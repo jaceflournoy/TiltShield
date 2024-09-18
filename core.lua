@@ -4,9 +4,9 @@ addon.showRatings = false
 local function CreateToggleButton()
     local button = CreateFrame("Button", "ShowRatingsButton", PVPQueueFrame, "UIPanelButtonTemplate")
     button:SetSize(120, 22)
-    button:SetPoint("BOTTOMLEFT", PVPQueueFrame, "BOTTOMLEFT", 10, 10)  -- Position at bottom left
+    button:SetPoint("BOTTOMLEFT", PVPQueueFrame, "BOTTOMLEFT", 10, 10)  
     button:SetText("Show Ratings")
-    button:SetFrameStrata("HIGH")  -- Ensure it's on top of other UI elements
+    button:SetFrameStrata("HIGH")  
     button:SetScript("OnClick", function()
         addon.showRatings = not addon.showRatings
         button:SetText(addon.showRatings and "Hide Ratings" or "Show Ratings")
@@ -14,18 +14,16 @@ local function CreateToggleButton()
     end)
 end
 
--- New function to create the Reload UI button
 local function CreateReloadButton()
     local button = CreateFrame("Button", "ReloadUIButton", PVPQueueFrame, "UIPanelButtonTemplate")
     button:SetSize(160, 22)
-    button:SetPoint("BOTTOMLEFT", PVPQueueFrame, "BOTTOMLEFT", 10, 35)  -- Position above the Show Ratings button
+    button:SetPoint("BOTTOMLEFT", PVPQueueFrame, "BOTTOMLEFT", 10, 35)  
     button:SetText("Fix Grayed Out Queues")
     button:SetFrameStrata("HIGH")
     button:SetScript("OnClick", function()
         ReloadUI()
     end)
     
-    -- Add tooltip
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_TOP")
         GameTooltip:SetText("Reloads UI to fix disabled buttons")
@@ -47,7 +45,7 @@ local function GetCurrentRating(ratingType)
     elseif ratingType == "RatedSoloShuffle" then
         rating = C_PvP.GetRatingInfo(11).personalRating
     elseif ratingType == "RatedBGBlitz" then
-        rating = C_PvP.GetRatingInfo(12).personalRating  -- Assuming RatedBGBlitz is index 12
+        rating = C_PvP.GetRatingInfo(12).personalRating  
     end
     return rating
 end
@@ -103,7 +101,7 @@ end
 
 local function OnEvent(self, event, isLogin, isReload)
     if isLogin or isReload then
-        CreateReloadButton()  -- Create the new Reload UI button
+        CreateReloadButton()  
         CreateToggleButton()
         hooksecurefunc("ConquestFrame_Update", updateMe)
         hooksecurefunc(PVPQueueFrame.HonorInset.RatedPanel, "Show", hideTier)
