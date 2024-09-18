@@ -1,0 +1,11 @@
+## Interface: 110005
+## Title: TiltShield
+## Notes: Helps prevent tilting in rated PvP by hiding ratings
+## Author: Skitstep
+## Version: 1.0
+## RequiredDeps: Blizzard_PVPUI, Blizzard_InspectUI, Blizzard_PVPMatch
+## LoadWith: Blizzard_PVPUI
+## IconTexture: TiltShield_Logo.jpg
+
+core.lua
+bgframe.lua
